@@ -10,7 +10,9 @@ class Login extends React.Component {
     state = {
         email: '',
         password: '',
-        error: ''
+        error: '',
+        roles:'',
+        allowedRoles:['']
     };
 
     handleChange = ({ target }) => {
@@ -21,12 +23,14 @@ class Login extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const { email, password } = this.state;
+        const { email, password, roles, allowedRoles } = this.state;
         const { updateUser } = this.props;
 
         const credentials = {
             email,
-            password
+            password,
+            roles,
+            allowedRoles
         }
 
         this.setState({
@@ -68,16 +72,17 @@ class Login extends React.Component {
 
 
         if (isLoggedIn) {
-            return (
-                <Redirect to="/" />
-            );
+            debugger;
+            // return (
+            //     <Redirect to="/"/>
+            // );
         }
         return (
 
             <div className="form-wrapper">
                 {
                     error.length
-                        ? <div>Something went wrong: {error}</div>
+                        ? <div>Something went wUYUYUYUYrong: {error}</div>
                         : null
                 }
                 <h1>Login</h1>

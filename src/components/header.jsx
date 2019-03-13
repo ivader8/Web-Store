@@ -13,12 +13,10 @@ const Header = ({isLoggedIn,allowedRoles, roles, username}) => {
                 <NavLink to="/"  activeClassName="active" className="active" aria-current="page">Home</NavLink>
                 <NavLink to="/store" activeClassName="active" >Store</NavLink>
                 {
-                (roles
-                     .map(role=>role.toLowerCase())
-                     .some(role=>allowedRoles.includes(role))) 
-                ?
-                <NavLink to="/create" activeClassName="active" >Create</NavLink>
-                : null
+                    roles
+                    ?console.log("there are roles")
+                    :null
+               
                 }   
                  <NavLink to="/orders" activeClassName="active" >My Orders</NavLink>
                 <NavLink to="/cart" activeClassName="active" >Cart</NavLink>          
