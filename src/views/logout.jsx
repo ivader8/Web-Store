@@ -2,6 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { UserConsumer, defaultUserState } from '../components/contexts/user-context';
 
+
 class Logout extends React.Component {
     constructor(props) {
         super(props)
@@ -21,8 +22,9 @@ const LogoutWithContext = (props) =>{
         <UserConsumer>
             {
                 ({updateUser})=>(
-                    <Logout {...props} updateUser = {updateUser}/>
+                    <Logout {...props} updateUser = {updateUser} />                    
                 )
+                 
             }
         </UserConsumer>
     )

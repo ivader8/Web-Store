@@ -35,7 +35,7 @@ nav.navbar-menu {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(88, 182, 92);
+    background-color: rgb(200, 162, 200);
 }
 
 nav.navbar-menu a {
@@ -46,11 +46,11 @@ nav.navbar-menu a {
     width: 15%;
     align-items: center;
     padding: 20px 10px;
-    border: 1px solid rgb(88, 182, 92);
+    border: 1px solid rgb(200, 162, 200);
 }
 
 nav.navbar-menu a:hover {
-    color: rgb(88, 182, 92);
+    color: rgb(200, 162, 200);
     background-color: white;
 }
 
@@ -78,20 +78,20 @@ div.welcome {
 
 div.welcome a {
     padding: 10px;
-    background-color: rgb(88, 182, 92);
+    background-color: rgb(200, 162, 200);
     border-radius: 0.5em;
     outline: none;
     text-decoration: none;
     color: white;
     margin: 10px;
-    border: 2px solid rgb(88, 182, 92);
+    border: 2px solid rgb(200, 162, 200);
     
 }
 
 div.welcome a:hover {
     background-color: white;
-    color: rgb(88, 182, 92);
-    border: 2px solid rgb(88, 182, 92);
+    color: rgb(200, 162, 200);
+    border: 2px solid rgb(200, 162, 200);
 }
 
 div.welcome p {
@@ -126,7 +126,7 @@ div.welcome p {
    padding: 10px 5px;
    outline: none;
    border-radius: 0.5em;
-   border: 1px solid rgb(88, 182, 92);   
+   border: 1px solid rgb(200, 162, 200);   
    
 }
 
@@ -134,18 +134,18 @@ div.welcome p {
 .form-wrapper input[type="submit"] {
     padding: 10px 20px;
     margin: 20px;   
-    background-color: rgb(88, 182, 92);
+    background-color: rgb(200, 162, 200);
     color: white;
     border: none;
     font-size: 18px;
     font-weight: bold;
-    border: 2px solid rgb(88, 182, 92);
+    border: 2px solid rgb(200, 162, 200);
 }
 
 .form-wrapper input[type="submit"]:hover {
     background-color: white;
-    color: rgb(88, 182, 92);
-    border: 2px solid rgb(88, 182, 92);
+    color: rgb(200, 162, 200);
+    border: 2px solid rgb(200, 162, 200);
     font-size: 18px;
     font-weight: bold;
 }
@@ -155,7 +155,7 @@ footer {
     width: 100%;
     bottom: 0;
     text-align: center;
-    background-color: rgb(88, 182, 92);
+    background-color: rgb(200, 162, 200);
     padding: 10px 0;
     font-size: 18px;
     font-weight: bold;

@@ -7,9 +7,9 @@ import Header from "./components/header"
 import Footer from './components/footer';
 import { UserProvider, defaultUserState } from './components/contexts/user-context'
 import AuthorizedRoute from './components/authorized-route';
-import CreateBook from './views/create-book';
 import AuthorizedRouteWithContext from './components/authorized-route';
 import LogoutWithContext from './views/logout';
+import CreateBookWithContext from './views/create-book';
 
 class App extends Component {
     constructor(props) {
@@ -43,8 +43,8 @@ class App extends Component {
                             <Switch>
                                 <Route path="/" exact component={Home} />
                                 <Route path="/login" component={Login} />
-                                <Route path="/logout" component={LogoutWithContext} />
-                                <AuthorizedRouteWithContext path ="/create" allowedRoles = {['admin']} component = {CreateBook} />
+                                <AuthorizedRouteWithContext path="/logout" component={LogoutWithContext} />
+                                <AuthorizedRouteWithContext path ="/create" allowedRoles = {['admin']} component = {CreateBookWithContext} />
                                 <Route component={NotFound} />
                             </Switch>
                             <Footer />

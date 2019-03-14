@@ -6,13 +6,10 @@ import { UserConsumer } from '../components/contexts/user-context';
 
 class Login extends React.Component {
     static service = new AuthenticationService();
-    // isLoggedIn: !!window.localStorage.getItem('auth_token'),
     state = {
         email: '',
         password: '',
         error: '',
-        roles:'',
-        allowedRoles:['']
     };
 
     handleChange = ({ target }) => {
@@ -23,47 +20,48 @@ class Login extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const { email, password, roles, allowedRoles } = this.state;
+        const { email, password } = this.state;
         const { updateUser } = this.props;
 
         const credentials = {
             email,
-            password,
-            roles,
-            allowedRoles
+            password
         }
 
-        this.setState({
-            error: '',
-        }, async () => {
-            try {
-                const result = await Login.service.login(credentials);
+        this.setState
+            (
+                {
+                    error: '',
+                },
+                async () => {
+                    try {
+                        const result = await Login.service.login(credentials);
 
-                if (!result.success) {
-                    const errors = Object.values(result.errors).join(' ');
+                        if (!result.success) {
+                            const errors = Object.values(result.errors).join(' ');
 
-                    throw new Error(errors);
+                            throw new Error(errors);
+                        }
+
+                        window.localStorage.setItem('auth_token', result.token)
+                        window.localStorage.setItem('user', JSON.stringify({
+                            ...result.user,
+                            isLoggedIn: true,
+                        }))
+
+                        updateUser({
+                            isLoggedIn: true,
+                            updateUser,
+                            ...result.user
+                        })
+                    } catch (error) {
+                        this.setState({
+                            error: error.message,
+                        }
+                        )
+                    }
                 }
-
-                window.localStorage.setItem('auth_token', result.token)
-                window.localStorage.setItem('user', JSON.stringify({
-                    ...result.user,
-                    isLoggedIn:true,
-                }))
-
-                updateUser({
-                    isLoggedIn: true,
-                    updateUser,
-                    ...result.user
-                })
-
-
-            } catch (error) {
-                this.setState({
-                    error: error.message,
-                })
-            }
-        })
+            )
     }
 
     render() {
@@ -72,17 +70,16 @@ class Login extends React.Component {
 
 
         if (isLoggedIn) {
-            debugger;
-            // return (
-            //     <Redirect to="/"/>
-            // );
+            return (
+                <Redirect to="/" />
+            );
         }
         return (
 
             <div className="form-wrapper">
                 {
                     error.length
-                        ? <div>Something went wUYUYUYUYrong: {error}</div>
+                        ? <div>Something went wrong: {error}</div>
                         : null
                 }
                 <h1>Login</h1>
@@ -119,12 +116,10 @@ const LoginWithContext = (props) => {
     return (
         <UserConsumer>
             {
-                ({ isLoggedIn, roles, allowedRoles, updateUser }) => (
+                ({ isLoggedIn, updateUser }) => (
 
                     <Login
                         {...props}
-                        roles = {roles}
-                        allowedRoles={allowedRoles}
                         isLoggedIn={isLoggedIn}
                         updateUser={updateUser}
                     />
