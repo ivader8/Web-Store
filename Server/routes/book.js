@@ -13,7 +13,7 @@ function validateBookCreateForm(payload) {
 
   if (!payload || typeof payload.title !== 'string' || payload.title.length < 3) {
     isFormValid = false
-    errors.name = 'Product name must be at least 3 symbols.'
+    errors.name = 'Book name must be at least 3 symbols.'
   }
 
   if (!payload || typeof payload.description !== 'string' || payload.description.length < 10 || payload.description.length > 200) {
@@ -59,7 +59,7 @@ router.post('/create', authCheck, (req, res) => {
       .then((createdBook) => {
         res.status(200).json({
           success: true,
-          message: 'Product added successfully.',
+          message: 'Book added successfully.',
           data: createdBook
         })
       })
@@ -67,7 +67,7 @@ router.post('/create', authCheck, (req, res) => {
         console.log(err)
         let message = 'Something went wrong :( Check the form for errors.'
         if (err.code === 11000) {
-          message = 'Product with the given name already exists.'
+          message = 'Book with the given name already exists.'
         }
         return res.status(200).json({
           success: false,

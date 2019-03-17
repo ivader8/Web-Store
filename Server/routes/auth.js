@@ -1,6 +1,10 @@
 const express = require('express')
 const passport = require('passport')
 const validator = require('validator')
+const authCheck = require('../config/auth-check')
+const User = require('../models/User')
+
+
 
 const router = new express.Router()
 
@@ -86,6 +90,46 @@ router.post('/signup', (req, res, next) => {
   })(req, res, next)
 })
 
+// router.delete('/delete/:id', authCheck, (req, res) => {
+//   const id = req.params.id
+//   if (req.user.roles.indexOf('Admin') > -1) {
+//     Book
+//       .findById(id)
+//       .then((book) => {
+//         book
+//           .remove()
+//           .then(() => {
+//             return res.status(200).json({
+//               success: true,
+//               message: 'Book deleted successfully!'
+//             })
+//           })
+//       })
+//       .catch(() => {
+//         return res.status(200).json({
+//           success: false,
+//           message: 'Entry does not exist!'
+//         })
+//       })
+//   } else {
+//     return res.status(200).json({
+//       success: false,
+//       message: 'Invalid credentials!'
+//     })
+//   }
+// })
+
+router.get('/allUsers', authCheck, (req,res)=>{
+  if (req.user.roles.indexOf('Admin') > -1) {
+    User
+    .find()
+    .then(users=>{
+      res.status(200).json(users)
+    })
+
+  }
+})
+
 router.post('/login', (req, res, next) => {
   const validationResult = validateLoginForm(req.body)
   if (!validationResult.success) {
@@ -115,7 +159,7 @@ router.post('/login', (req, res, next) => {
       success: true,
       message: 'You have successfully logged in!',
       token,
-      user: userData,
+      user: userData
     })
   })(req, res, next)
 })

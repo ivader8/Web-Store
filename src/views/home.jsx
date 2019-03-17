@@ -8,11 +8,8 @@ class Home extends Component {
         return (
             <main>
                 <div className="welcome-wrapper">
-                    <LandingMessage message="Welcome to our book store, Tanya!">
-                        <p>
-                            <a href="/store">Go To Store</a>
-                            <a href="/orders">View your orders</a>
-                        </p>
+                    <LandingMessage message="Welcome to the Unicorn Life! Below are listed some of the best products you can use to become anyone's unicorn!">
+                        
                     </LandingMessage>
                   <TopRatedBookCards>
                       

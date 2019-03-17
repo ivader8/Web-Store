@@ -54,6 +54,23 @@ nav.navbar-menu a:hover {
     background-color: white;
 }
 
+div.card-col-4{
+    /* width: 40%; */
+    height: 400px;
+    width: 400px;
+    margin: 20 auto;
+    /* min-width: 450px; */
+    outline: solid;
+    outline-color: rgb(200, 162, 200);
+    /* outline-color: 2px rgb(230, 204, 204); */
+    border-radius: 50px;
+}
+
+/* button.btn-warning-float-right-btn-sm {
+    position:"fixed";
+    bottom:10px;
+} */
+
 div.welcome-wrapper {
     width: 70%;
     margin: 0 auto;

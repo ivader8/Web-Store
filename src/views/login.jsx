@@ -1,5 +1,6 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Button, ButtonToolbar } from 'react-bootstrap'
+import { Redirect, Link } from 'react-router-dom'
 import AuthenticationService from '../services/authentication-service';
 import { UserConsumer } from '../components/contexts/user-context';
 
@@ -10,6 +11,7 @@ class Login extends React.Component {
         email: '',
         password: '',
         error: '',
+        isLoggedIn:false
     };
 
     handleChange = ({ target }) => {
@@ -17,6 +19,7 @@ class Login extends React.Component {
             [target.name]: target.value
         });
     }
+
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -49,6 +52,8 @@ class Login extends React.Component {
                             isLoggedIn: true,
                         }))
 
+                     this.setState({isLoggedIn:true})                                              
+
                         updateUser({
                             isLoggedIn: true,
                             updateUser,
@@ -66,7 +71,7 @@ class Login extends React.Component {
 
     render() {
         const { email, password, error } = this.state;
-        const { isLoggedIn } = this.props;
+        let { isLoggedIn } = this.state;
 
 
         if (isLoggedIn) {
@@ -102,10 +107,22 @@ class Login extends React.Component {
                             value={password}
                             onChange={this.handleChange} />
                     </div>
-                    <button type="submit">
-                        Log in
-                    </button>
+                    <ButtonToolbar>
+                        <Button size="lg" type="submit" variant="outline-primary">
+                            Log in
+                        </Button>
+
+                        <Link to='/register'>
+                            <Button size="lg" type="submit" variant="outline-secondary"  >Register</Button>
+                        </Link>
+
+                    </ButtonToolbar>
+
                 </form>
+
+
+
+
             </div>
         )
     }
@@ -113,8 +130,9 @@ class Login extends React.Component {
 }
 
 const LoginWithContext = (props) => {
+    // const { user } = this.props;
     return (
-        <UserConsumer>
+        <UserConsumer >
             {
                 ({ isLoggedIn, updateUser }) => (
 

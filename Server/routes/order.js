@@ -7,8 +7,12 @@ const router = new express.Router()
 router.post('/submit', authCheck, (req, res) => {
   const products = req.body
   let orderObj = {
-    creator: req.user._id,
-    products
+    // creator: req.user._id,
+    // products
+    username:products.username,
+    title:products.title
+   
+    // products
   }
 
   Order
@@ -36,6 +40,17 @@ router.get('/user', authCheck, (req, res) => {
     .then(orders => {
       res.status(200).json(orders)
     })
+})
+
+router.get('/allOrders', authCheck, (req,res)=>{
+  if (req.user.roles.indexOf('Admin') > -1) {
+    Order
+    .find()
+    .then(orders=>{
+      res.status(200).json(orders)
+    })
+
+  }
 })
 
 router.get('/pending', authCheck, (req, res) => {

@@ -3,13 +3,17 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from "./views/home"
 import NotFound from "./views/not-found"
 import Login from './views/login';
-import Header from "./components/header"
 import Footer from './components/footer';
 import { UserProvider, defaultUserState } from './components/contexts/user-context'
-import AuthorizedRoute from './components/authorized-route';
 import AuthorizedRouteWithContext from './components/authorized-route';
 import LogoutWithContext from './views/logout';
 import CreateBookWithContext from './views/create-book';
+import RegisterWithContext from './views/register';
+import HeaderWithContext from './components/header';
+import UsersAll from './views/usersAll';
+import OrdersAll from './views/ordersAll';
+import CreateOrderWithContext from './views/create-order';
+import SuccessOrderMessage from './views/success-order-message';
 
 class App extends Component {
     constructor(props) {
@@ -39,12 +43,18 @@ class App extends Component {
                 <Router>
                     <Fragment>
                         <UserProvider value={user}>
-                            <Header />
+                            <HeaderWithContext isLoggedIn={user.isLoggedIn} />
                             <Switch>
+                                <Route path="/successfullyPlacedOrder" component={SuccessOrderMessage} />
                                 <Route path="/" exact component={Home} />
+                                <AuthorizedRouteWithContext path="/usersAll" component={UsersAll} />
+                                <AuthorizedRouteWithContext path="/ordersAll" component={OrdersAll} />
                                 <Route path="/login" component={Login} />
+                                <Route path="/register" component={RegisterWithContext} />
                                 <AuthorizedRouteWithContext path="/logout" component={LogoutWithContext} />
-                                <AuthorizedRouteWithContext path ="/create" allowedRoles = {['admin']} component = {CreateBookWithContext} />
+                                <AuthorizedRouteWithContext path="/create" allowedRoles={['admin']} component={CreateBookWithContext} />
+                                {/* <AuthorizedRouteWithContext path="/createOrder" exact component = {CreateOrderWithContext}/> */}
+                                <AuthorizedRouteWithContext path="/create" allowedRoles={['admin']} component={CreateBookWithContext} />
                                 <Route component={NotFound} />
                             </Switch>
                             <Footer />
